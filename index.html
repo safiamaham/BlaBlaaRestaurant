@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bla Blaa Islamabad | Restaurant & Night Lounge</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS VARIABLES & DESIGN TOKENS */
+        :root {
+            --bg-dark: #080708;
+            --bg-card: #121013;
+            --bg-card-hover: #1a171c;
+            --accent-gold: #e5b869;
+            --accent-gold-glow: rgba(229, 184, 105, 0.25);
+            --accent-fire: #e65100;
+            --accent-neon: #ff6d00;
+            --text-main: #f5f5f7;
+            --text-muted: #a0a0ab;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(229, 184, 105, 0.4);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* RESET & BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: var(--font-heading);
+            letter-spacing: 1px;
+        }
+
+        /* UTILITIES */
+        .gold-text { color: var(--accent-gold); }
+        .fire-text { color: var(--accent-fire); }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.8rem;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
+            color: #000;
+            box-shadow: 0 4px 20px var(--accent-gold-glow);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ffd700, var(--accent-gold));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(229, 184, 105, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-gold-glow);
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: linear-gradient(to bottom, rgba(8, 7, 8, 0.95), rgba(8, 7, 8, 0));
+        }
+
+        .navbar.scrolled {
+            background: rgba(8, 7, 8, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 0.9rem 6%;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+            text-shadow: 0 0 12px var(--accent-gold-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--accent-gold); }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 1rem 3rem;
+            background: linear-gradient(rgba(8, 7, 8, 0.75), rgba(8, 7, 8, 0.9)), 
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(229, 184, 105, 0.12);
+            border: 1px solid var(--accent-gold);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 30%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(18, 16, 19, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        /* SECTION HEADERS */
+        section { padding: 5rem 0; }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ABOUT / AMBIANCE SECTION */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .about-highlights-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .about-highlights-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .about-highlights-list i {
+            color: var(--accent-gold);
+        }
+
+        .about-image-stack {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .about-img:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-gold);
+        }
+
+        /* MENU SECTION */
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.6rem 1.4rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
+            color: #000;
+            border-color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .menu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-glow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .menu-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .menu-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent-fire);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .menu-body {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .menu-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item-title {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .menu-price {
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .menu-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .menu-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* GALLERY SECTION */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 220px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-text h4 {
+            font-size: 1rem;
+            color: var(--accent-gold);
+        }
+
+        /* REVIEWS SECTION */
+        .reviews-wrapper {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .google-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .rating-num {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .stars-row {
+            color: var(--accent-gold);
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .review-text {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-style: italic;
+        }
+
+        /* LOCATION & TIMINGS */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .info-list i {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin-top: 0.2rem;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* MODAL POPUP */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            padding: 2.5rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 6px;
+            font-family: var(--font-body);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #040404;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            background: var(--accent-gold-glow);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .about-grid, .location-grid, .reviews-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title { font-size: 3rem; }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border-color);
+                display: none;
+            }
+
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: block; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">BLA <span>BLAA</span></a>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about" onclick="toggleMobileMenu()">About & Vibe</a></li>
+            <li><a href="#menu" onclick="toggleMobileMenu()">Menu</a></li>
+            <li><a href="#gallery" onclick="toggleMobileMenu()">Gallery</a></li>
+            <li><a href="#reviews" onclick="toggleMobileMenu()">Reviews</a></li>
+            <li><a href="#location" onclick="toggleMobileMenu()">Contact</a></li>
+        </ul>
+
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <button class="btn btn-primary" onclick="openModal()">Reserve Table</button>
+            <button class="mobile-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-fire fire-text"></i>
+                <span>Islamabad's Premier Night Lounge & Cafe</span>
+            </div>
+
+            <h1 class="hero-title">Bla Blaa</h1>
+            <p class="hero-tagline">"Dine, Unwind & Enjoy Late Into The Night"</p>
+            
+            <p class="hero-description">
+                Located in F-8/4 Islamabad, Bla Blaa combines rich continental dining, handcrafted coffees, artisanal desserts, cozy fireside vibes, and smooth Sheesha experiences open till 4 AM.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#menu" class="btn btn-primary"><i class="fa-solid fa-utensils"></i> Explore Menu</a>
+                <button class="btn btn-outline" onclick="openModal()"><i class="fa-regular fa-calendar-check"></i> Book Table</button>
+            </div>
+
+            <div class="hero-features">
+                <div class="feature-chip"><i class="fa-solid fa-fire fire-text"></i> Outdoor Fireplace</div>
+                <div class="feature-chip"><i class="fa-solid fa-cloud gold-text"></i> Sheesha Lounge</div>
+                <div class="feature-chip"><i class="fa-solid fa-moon gold-text"></i> Open Till 4 AM</div>
+                <div class="feature-chip"><i class="fa-solid fa-chair gold-text"></i> Outdoor Seating</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ABOUT & VIBE SECTION -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-card">
+                    <span class="section-subtitle">The Bla Blaa Vibe</span>
+                    <h2 class="section-title">Cozy Evenings & Ambient Nights</h2>
+                    <p style="color: var(--text-muted);">
+                        Whether you are looking for an late-night cafe escape, a cozy fireside dinner with friends, or premium Sheesha in town, Bla Blaa is tailored for night owls and food enthusiasts in Islamabad.
+                    </p>
+
+                    <ul class="about-highlights-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Warm fireplace lounge for cool Islamabad evenings</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Spacious outdoor patio seating with high chairs</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Specialty coffee brews and fresh gourmet desserts</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Late night operating hours starting late afternoon till 4 AM</li>
+                    </ul>
+                </div>
+
+                <div class="about-image-stack">
+                    <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=800&auto=format&fit=crop" class="about-img" alt="Cozy Ambience">
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop" class="about-img" alt="Coffee Brews">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" class="about-img" alt="Fine Dining Food">
+                    <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?q=80&w=800&auto=format&fit=crop" class="about-img" alt="Outdoor Patio">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE MENU SECTION -->
+    <section id="menu" style="background: rgba(18, 16, 19, 0.5);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Handcrafted Delicacies</span>
+                <h2 class="section-title">Our Food & Beverage Menu</h2>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="menu-filters">
+                <button class="filter-btn active" onclick="filterMenu('all')">All Items</button>
+                <button class="filter-btn" onclick="filterMenu('mains')">Signature Mains</button>
+                <button class="filter-btn" onclick="filterMenu('coffee')">Specialty Coffee</button>
+                <button class="filter-btn" onclick="filterMenu('desserts')">Desserts</button>
+                <button class="filter-btn" onclick="filterMenu('lounge')">Sheesha & Lounge</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menuGrid">
+                
+                <!-- Main 1 -->
+                <div class="menu-card" data-category="mains">
+                    <span class="menu-badge">Best Seller</span>
+                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=600&auto=format&fit=crop" class="menu-img" alt="Moroccan Chicken">
+                    <div class="menu-body">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Moroccan Chicken</h3>
+                            <span class="menu-price">Rs 1,850</span>
+                        </div>
+                        <p class="menu-desc">Char-grilled chicken breast drizzled in exotic spicy Moroccan sauce served with roasted vegetables & rice.</p>
+                        <div class="menu-footer"><i class="fa-solid fa-fire fire-text"></i> Chef's Specialty</div>
+                    </div>
+                </div>
+
+                <!-- Main 2 -->
+                <div class="menu-card" data-category="mains">
+                    <span class="menu-badge">Popular</span>
+                    <img src="https://images.unsplash.com/photo-1645112411341-6c4fd023714a?q=80&w=800&auto=format&fit=crop" class="menu-img" alt="Grilled Chicken with Creamy Pasta">
+                    <div class="menu-body">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Grilled Chicken Creamy Pasta</h3>
+                            <span class="menu-price">Rs 1,750</span>
+                        </div>
+                        <p class="menu-desc">Fettuccine pasta tossed in rich parmesan garlic cream sauce topped with juicy sliced grilled chicken breast.</p>
+                        <div class="menu-footer"><i class="fa-solid fa-wheat-awn gold-text"></i> Italian Style</div>
+                    </div>
+                </div>
+
+                <!-- Coffee 1 -->
+                <div class="menu-card" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600&auto=format&fit=crop" class="menu-img" alt="Spanish Latte">
+                    <div class="menu-body">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Signature Spanish Latte</h3>
+                            <span class="menu-price">Rs 780</span>
+                        </div>
+                        <p class="menu-desc">Double shot espresso infused with sweetened milk and silky steamed velvet foam.</p>
+                        <div class="menu-footer"><i class="fa-solid fa-mug-hot gold-text"></i> Hot / Iced</div>
+                    </div>
+                </div>
+
+                <!-- Coffee 2 -->
+                <div class="menu-card" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?q=80&w=600&auto=format&fit=crop" class="menu-img" alt="Iced Hazelnut Frappe">
+                    <div class="menu-body">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Hazelnut Coffee Frappe</h3>
+                            <span class="menu-price">Rs 850</span>
+                        </div>
+                        <p class="menu-desc">Blended iced coffee brew layered with toasted hazelnut syrup and whipped cream top.</p>
+                        <div class="menu-footer"><i class="fa-solid fa-snowflake gold-text"></i> Refreshing Cold</div>
+                    </div>
+                </div>
+
+                <!-- Dessert 1 -->
+                <div class="menu-card" data-category="desserts">
+                    <span class="menu-badge">Must Try</span>
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=600&auto=format&fit=crop" class="menu-img" alt="Molten Lava Cake">
+                    <div class="menu-body">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Gourmet Molten Lava Cake</h3>
+                            <span class="menu-price">Rs 950</span>
+                        </div>
+                        <p class="menu-desc">Warm chocolate cake with a soft gooey liquid center, served with vanilla bean ice cream.</p>
+                        <div class="menu-footer"><i class="fa-solid fa-cookie gold-text"></i> Warm Sweet</div>
+                    </div>
+                </div>
+
+                <!-- Lounge 1 -->
+                <div class="menu-card" data-category="lounge">
+                    <span class="menu-badge">Lounge Fav</span>
+                    <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=600&auto=format&fit=crop" class="menu-img" alt="Sheesha Flavors">
+                    <div class="menu-body">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Premium Sheesha Flavors</h3>
+                            <span class="menu-price">Rs 2,200+</span>
+                        </div>
+                        <p class="menu-desc">Wide assortment of fresh smooth Sheesha blends including Mint, Blueberry, Gum, and Special Mixes.</p>
+                        <div class="menu-footer"><i class="fa-solid fa-cloud fire-text"></i> Outdoor Seating</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SHOWCASE -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Visual Experience</span>
+                <h2 class="section-title">Atmosphere & Creations</h2>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?q=80&w=600&auto=format&fit=crop" alt="Night Lounge Vibe">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h4>Night Lounge</h4>
+                            <p style="font-size:0.8rem; color:#ccc;">Islamabad Evening Vibes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=600&auto=format&fit=crop" alt="Coffee Brewing">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h4>Artisanal Coffee</h4>
+                            <p style="font-size:0.8rem; color:#ccc;">Fresh Roasted Beans</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop" alt="Plated Steak Dish">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h4>Gourmet Mains</h4>
+                            <p style="font-size:0.8rem; color:#ccc;">Continental Delights</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=600&auto=format&fit=crop" alt="Outdoor Fireplace">
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">
+                            <h4>Outdoor Fireplace</h4>
+                            <p style="font-size:0.8rem; color:#ccc;">Warmth & Comfort</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" style="background: rgba(18, 16, 19, 0.5);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Verified Ratings</span>
+                <h2 class="section-title">Google Customer Reviews</h2>
+            </div>
+
+            <div class="reviews-wrapper">
+                <div class="google-box">
+                    <div class="rating-num">4.2</div>
+                    <div class="stars-row">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p style="font-size:0.85rem; color: var(--text-muted);">Based on 523+ Google Reviews</p>
+                </div>
+
+                <div class="review-cards">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="reviewer-name">Hassan Ahmed</span>
+                            <div class="stars-row" style="font-size:0.8rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-text">"Bla Blaa is our default late night spot in Islamabad! The Moroccan chicken is super tasty and the outdoor seating with fireplace is unbeatable."</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span class="reviewer-name">Sara Khan</span>
+                            <div class="stars-row" style="font-size:0.8rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p class="review-text">"Best place for coffee and dessert post midnight in F-8. Smooth Sheesha and high quality grilled chicken pasta."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION & HOURS -->
+    <section id="location">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Find Us</span>
+                <h2 class="section-title">Location & Opening Timings</h2>
+            </div>
+
+            <div class="location-grid">
+                <div class="info-card">
+                    <h3 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Bla Blaa Islamabad</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Sector F-8/4 Night Lounge & Cafe</p>
+
+                    <ul class="info-list">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>P25W+PHQ, Street 48, F-8/4, Islamabad, Pakistan</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Daily Timings: 4:00 PM – 4:00 AM (Late Night)</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span><a href="tel:03450003111" style="color:var(--text-main); text-decoration:none;">0345 0003111</a></span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-wallet"></i>
+                            <span>Rs 1,000 – 3,000 average per person</span>
+                        </li>
+                    </ul>
+
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                        <i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps
+                    </a>
+                </div>
+
+                <div class="map-frame">
+                    <i class="fa-solid fa-map-location-dot gold-text" style="font-size: 3rem;"></i>
+                    <h4 style="font-size: 1.2rem;">Located in Sector F-8/4, Islamabad</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Street 48, Near Central F-8 Hub</p>
+                    <a href="tel:03450003111" class="btn btn-primary" style="margin-top:0.5rem;"><i class="fa-solid fa-phone"></i> Call Direct: 0345 0003111</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo brand-font">BLA <span style="color: var(--accent-gold);">BLAA</span></div>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Restaurant • Coffee • Food • Desserts • Sheesha Lounge • F-8/4 Islamabad</p>
+
+            <div class="social-links">
+                <a href="https://instagram.com/blablaaislamabad" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="tel:03450003111" aria-label="Phone Call"><i class="fa-solid fa-phone"></i></a>
+            </div>
+
+            <p class="copyright">&copy; 2026 Bla Blaa Islamabad. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- RESERVATION MODAL -->
+    <div class="modal-overlay" id="reservationModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.3rem;">Table Reservation</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Book your table or sheesha lounge space at Bla Blaa.</p>
+
+            <form onsubmit="handleReservation(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" class="form-control" placeholder="0345 0000000" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Time Slot</label>
+                        <select class="form-control" required>
+                            <option>5:00 PM (Early Evening)</option>
+                            <option>8:00 PM (Dinner)</option>
+                            <option>11:00 PM (Night Owl)</option>
+                            <option>1:30 AM (Late Night)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Seating Preference</label>
+                    <select class="form-control">
+                        <option>Outdoor Fireplace Area</option>
+                        <option>Indoor Cafe Seating</option>
+                        <option>High Chairs Lounge</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Navbar Scroll Styling
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Toggle Mobile Menu Navigation
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Menu Filtering Mechanism
+        function filterMenu(category) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const menuCards = document.querySelectorAll('.menu-card');
+
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            menuCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Controls
+        function openModal() {
+            document.getElementById('reservationModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('reservationModal').classList.remove('active');
+        }
+
+        function handleReservation(e) {
+            e.preventDefault();
+            alert('Thank you! Your reservation request for Bla Blaa Islamabad has been received. Our team will contact you on your mobile number shortly.');
+            closeModal();
+        }
+    </script>
+</body>
+</html>
